@@ -12,4 +12,3 @@ function logCRP() {
 window.addEventListener("load", function(event) {
   logCRP();
 });
-console.log(logCRP());
