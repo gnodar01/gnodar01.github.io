@@ -14,17 +14,7 @@
     <!-- set to media print, so this css does not block rendering -->
     <link href="css/print.css" rel="stylesheet" media="print">
 
-<!-- can this be moved to the bottom so it does not block parsing? -->
-    <script>
-      (function(w,g){w['GoogleAnalyticsObject']=g;
-      w[g]=w[g]||function(){(w[g].q=w[g].q||[]).push(arguments)};w[g].l=1*new Date();})(window,'ga');
 
-      // TODO: replace with your Google Analytics profile ID.
-      ga('create', 'UA-XXXX-Y');
-      ga('send', 'pageview');
-    </script>
-    <!-- set scrypt as async since it is non-critical -->
-    <script async src="http://www.google-analytics.com/analytics.js"></script>
     <script async src="js/perfmatters.js"></script>
   </head>
 
@@ -70,5 +60,18 @@
     <footer>
       <p>&copy; Web Performance 2014 <span id="crp-stats"></span></p>
     </footer>
+
+    <!-- can this be moved to the bottom so it does not block parsing? (moved to bottom) -->
+    <script>
+      (function(w,g){w['GoogleAnalyticsObject']=g;
+      w[g]=w[g]||function(){(w[g].q=w[g].q||[]).push(arguments)};w[g].l=1*new Date();})(window,'ga');
+
+      // TODO: replace with your Google Analytics profile ID.
+      ga('create', 'UA-XXXX-Y');
+      ga('send', 'pageview');
+    </script>
+    <!-- set scrypt as async since it is non-critical -->
+    <script async src="http://www.google-analytics.com/analytics.js"></script>
+    
   </body>
 </html>
