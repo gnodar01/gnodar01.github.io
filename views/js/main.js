@@ -449,12 +449,13 @@ var resizePizzas = function(size) {
   }
 
   // Iterates through pizza elements on the page and changes their widths
-  // Modification: moved costants dx and newwidth out of loop
   // Set pizzaList variable to avoid repetitively building it
+  // Removed dx and newWidth from loop and replaced i with 0
   function changePizzaSizes(size) {
     var pizzaList = document.querySelectorAll(".randomPizzaContainer")
-    var dx = determineDx(pizzaList[i], size);
-    var newwidth = (pizzaList[i].offsetWidth + dx) + 'px';
+    var dx = determineDx(pizzaList[0], size);
+    var newwidth = (pizzaList[0].offsetWidth + dx) + 'px';
+
     for (var i = 0; i < pizzaList.length; i++) {
       pizzaList[i].style.width = newwidth;
     }
@@ -501,18 +502,38 @@ function logAverageFrame(times) {   // times is the array of User Timing measure
   console.log("Average time to generate last 10 frames: " + sum / 10 + "ms");
 }
 
+// Stores most recent scroll position
+var latestKnownScrollY = 0;
+var ticking = false;
+
+// Pushes scroll position to latestKnownScrollY
+function onScroll() {
+  latestKnownScrollY = window.scrollY;
+  requestTick();
+}
+
+// Requests animation frame if not already initiated
+function requestTick() {
+  if(!ticking) {
+    requestAnimationFrame(updatePositions);
+  }
+  ticking = true;
+}
+
+
 // The following code for sliding background pizzas was pulled from Ilya's demo found at:
 // https://www.igvita.com/slides/2012/devtools-tips-and-tricks/jank-demo.html
 
 // Moves the sliding background pizzas based on scroll position
 function updatePositions() {
   frame++;
+  ticking = false;
   window.performance.mark("mark_start_frame");
 
   // Modification: Store scrollTop so it doesn't have to be loaded each loop
-  var storeScrollTop = document.body.scrollTop / 1250;
+  var storeScrollTop = latestKnownScrollY;
   for (var i = 0; i < itemLen; i++) {
-    var phase = Math.sin(storeScrollTop + (i % 5));
+    var phase = Math.sin((storeScrollTop / 1250) + (i % 5));
     var leftPos = items[i].basicLeft + 100 * phase + 'px';
     items[i].style.left = leftPos;
   }
@@ -527,8 +548,8 @@ function updatePositions() {
   }
 }
 
-// runs updatePositions on scroll
-window.addEventListener('scroll', updatePositions);
+// Initiates onScroll when scroll event is detected
+window.addEventListener('scroll', onScroll, false);
 
 // Generates the sliding pizzas when the page loads.
 document.addEventListener('DOMContentLoaded', function() {
