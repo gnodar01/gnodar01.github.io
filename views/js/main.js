@@ -484,6 +484,9 @@ console.log("Time to generate pizzas on load: " + timeToGenerate[0].duration + "
 // Used by updatePositions() to decide when to log the average time per frame
 var frame = 0;
 
+// Cache for .mover items and it's item count, so they does not have to be loaded each time there is a scroll event
+var items, itemLen;
+
 // Logs the average amount of time per 10 frames needed to move the sliding background pizzas on scroll.
 function logAverageFrame(times) {   // times is the array of User Timing measurements from updatePositions()
   var numberOfEntries = times.length;
@@ -502,10 +505,12 @@ function updatePositions() {
   frame++;
   window.performance.mark("mark_start_frame");
 
-  var items = document.querySelectorAll('.mover');
-  for (var i = 0; i < items.length; i++) {
-    var phase = Math.sin((document.body.scrollTop / 1250) + (i % 5));
-    items[i].style.left = items[i].basicLeft + 100 * phase + 'px';
+  // Store scrollTop so it doesn't have to be loaded each loop
+  var storeScrollTop = document.body.scrollTop / 1250;
+  for (var i = 0; i < itemLen; i++) {
+    var phase = Math.sin(storeScrollTop + (i % 5));
+    var leftPos = items[i].basicLeft + 100 * phase + 'px';
+    items[i].style.left = leftPos;
   }
 
   // User Timing API to the rescue again. Seriously, it's worth learning.
@@ -525,15 +530,26 @@ window.addEventListener('scroll', updatePositions);
 document.addEventListener('DOMContentLoaded', function() {
   var cols = 8;
   var s = 256;
-  for (var i = 0; i < 200; i++) {
-    var elem = document.createElement('img');
-    elem.className = 'mover';
-    elem.src = "images/pizza.png";
-    elem.style.height = "100px";
-    elem.style.width = "73.333px";
-    elem.basicLeft = (i % cols) * s;
-    elem.style.top = (Math.floor(i / cols) * s) + 'px';
-    document.querySelector("#movingPizzas1").appendChild(elem);
+  //counter to keep track # of iterations for basicLeft and top positions
+  var counter = 0;
+
+  //loop through until bottom of screen is reached, in intervals of 256
+  for (var i = 0, h = window.screen.height; i < h; i += s) {
+    //loop through until right side of screen is reached, in intervals of 256
+    for (var j = 0, w = window.screen.width; j < w; j += s) {
+      var elem = document.createElement('img');
+      elem.className = 'mover';
+      elem.src = "images/pizza.png";
+      elem.style.height = "100px";
+      elem.style.width = "73.333px";
+      elem.basicLeft = (counter % cols) * s;
+      elem.style.top = (Math.floor(counter / cols) * s) + 'px';
+      counter++;
+      document.querySelector("#movingPizzas1").appendChild(elem);
+    }
   }
+
+  items = document.querySelectorAll('.mover');
+  itemLen = items.length;
   updatePositions();
 });
