@@ -449,11 +449,14 @@ var resizePizzas = function(size) {
   }
 
   // Iterates through pizza elements on the page and changes their widths
+  // Modification: moved costants dx and newwidth out of loop
+  // Set pizzaList variable to avoid repetitively building it
   function changePizzaSizes(size) {
-    for (var i = 0; i < document.querySelectorAll(".randomPizzaContainer").length; i++) {
-      var dx = determineDx(document.querySelectorAll(".randomPizzaContainer")[i], size);
-      var newwidth = (document.querySelectorAll(".randomPizzaContainer")[i].offsetWidth + dx) + 'px';
-      document.querySelectorAll(".randomPizzaContainer")[i].style.width = newwidth;
+    var pizzaList = document.querySelectorAll(".randomPizzaContainer")
+    var dx = determineDx(pizzaList[i], size);
+    var newwidth = (pizzaList[i].offsetWidth + dx) + 'px';
+    for (var i = 0; i < pizzaList.length; i++) {
+      pizzaList[i].style.width = newwidth;
     }
   }
 
@@ -469,8 +472,9 @@ var resizePizzas = function(size) {
 window.performance.mark("mark_start_generating"); // collect timing data
 
 // This for-loop actually creates and appends all of the pizzas when the page loads
+// Modification: move pizzasDiv out of loop. variable is constant.
+var pizzasDiv = document.getElementById("randomPizzas");
 for (var i = 2; i < 100; i++) {
-  var pizzasDiv = document.getElementById("randomPizzas");
   pizzasDiv.appendChild(pizzaElementGenerator(i));
 }
 
@@ -484,7 +488,7 @@ console.log("Time to generate pizzas on load: " + timeToGenerate[0].duration + "
 // Used by updatePositions() to decide when to log the average time per frame
 var frame = 0;
 
-// Cache for .mover items and it's item count, so they does not have to be loaded each time there is a scroll event
+// Modification: Cache for .mover items and it's item count, so they does not have to be loaded each time there is a scroll event
 var items, itemLen;
 
 // Logs the average amount of time per 10 frames needed to move the sliding background pizzas on scroll.
@@ -505,7 +509,7 @@ function updatePositions() {
   frame++;
   window.performance.mark("mark_start_frame");
 
-  // Store scrollTop so it doesn't have to be loaded each loop
+  // Modification: Store scrollTop so it doesn't have to be loaded each loop
   var storeScrollTop = document.body.scrollTop / 1250;
   for (var i = 0; i < itemLen; i++) {
     var phase = Math.sin(storeScrollTop + (i % 5));
@@ -530,12 +534,13 @@ window.addEventListener('scroll', updatePositions);
 document.addEventListener('DOMContentLoaded', function() {
   var cols = 8;
   var s = 256;
-  //counter to keep track # of iterations for basicLeft and top positions
+  // Modification: counter to keep track # of iterations for basicLeft and top positions
   var counter = 0;
 
-  //loop through until bottom of screen is reached, in intervals of 256
+  //Modification: Create loops that only creates a number of sliding pizzas based on screen size.
+  // Loop through until bottom of screen is reached, in intervals of 256
   for (var i = 0, h = window.screen.height; i < h; i += s) {
-    //loop through until right side of screen is reached, in intervals of 256
+    // Loop through until right side of screen is reached, in intervals of 256
     for (var j = 0, w = window.screen.width; j < w; j += s) {
       var elem = document.createElement('img');
       elem.className = 'mover';
@@ -549,6 +554,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   }
 
+  //Modification: push query selctor and length to global scope for use in scroll events
   items = document.querySelectorAll('.mover');
   itemLen = items.length;
   updatePositions();
