@@ -1,3 +1,6 @@
+- Minified all JS files
+- Minified all CSS files
+
 Index.html changes:
 
 - Set media print attribute to css/print.css
@@ -47,3 +50,4 @@ views/main.js changes
 - Moved pizzaList and pizzasDiv variables outside of their respective loops, as they are constant variables
 - Removed dx and newWidth from changePizzaSizes loop and replaced i with 0
 - Applied requestAnimationFrame to ron on scroll events, which tracks scroll position, and only requests when there is not already a request initiated.
+- Switched to transform rather than style.left (smoother and higher performance)

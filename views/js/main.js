@@ -534,8 +534,10 @@ function updatePositions() {
   var storeScrollTop = latestKnownScrollY;
   for (var i = 0; i < itemLen; i++) {
     var phase = Math.sin((storeScrollTop / 1250) + (i % 5));
-    var leftPos = items[i].basicLeft + 100 * phase + 'px';
-    items[i].style.left = leftPos;
+    // Modification: swithc style.left with transform
+    // transform provides smoother animation and higher performance
+    // translate3d (vs translate() or translateX() ) allows hardware acceleration
+    items[i].style.transform = 'translate3d(' + (100 * phase) + 'px, 0, 0)';
   }
 
   // User Timing API to the rescue again. Seriously, it's worth learning.
@@ -555,10 +557,10 @@ window.addEventListener('scroll', onScroll, false);
 document.addEventListener('DOMContentLoaded', function() {
   var cols = 8;
   var s = 256;
-  // Modification: counter to keep track # of iterations for basicLeft and top positions
+  // Modification: counter to keep track # of iterations for left and top positions
   var counter = 0;
 
-  //Modification: Create loops that only creates a number of sliding pizzas based on screen size.
+  // Modification: Create loops that only creates a number of sliding pizzas based on screen size.
   // Loop through until bottom of screen is reached, in intervals of 256
   for (var i = 0, h = window.screen.height; i < h; i += s) {
     // Loop through until right side of screen is reached, in intervals of 256
@@ -568,7 +570,8 @@ document.addEventListener('DOMContentLoaded', function() {
       elem.src = "images/pizza.png";
       elem.style.height = "100px";
       elem.style.width = "73.333px";
-      elem.basicLeft = (counter % cols) * s;
+      // Modification: removed basicLeft, in order to use transform instead
+      elem.style.left = (counter % cols) * s + 'px';
       elem.style.top = (Math.floor(counter / cols) * s) + 'px';
       counter++;
       document.querySelector("#movingPizzas1").appendChild(elem);
