@@ -557,20 +557,19 @@ document.addEventListener('DOMContentLoaded', function() {
   var s = 256;
   // Modification: counter to keep track # of iterations for basicLeft and top positions
   var counter = 0;
-  // Modification: moved elem out of loop, no need to recreate it each time.
-  var elem = document.createElement('img');
-  elem.className = 'mover';
-  elem.src = "images/pizza.png";
-  elem.style.height = "100px";
-  elem.style.width = "73.333px";
-  elem.basicLeft = (counter % cols) * s;
-  elem.style.top = (Math.floor(counter / cols) * s) + 'px';
+
   //Modification: Create loops that only creates a number of sliding pizzas based on screen size.
   // Loop through until bottom of screen is reached, in intervals of 256
   for (var i = 0, h = window.screen.height; i < h; i += s) {
     // Loop through until right side of screen is reached, in intervals of 256
     for (var j = 0, w = window.screen.width; j < w; j += s) {
-      
+      var elem = document.createElement('img');
+      elem.className = 'mover';
+      elem.src = "images/pizza.png";
+      elem.style.height = "100px";
+      elem.style.width = "73.333px";
+      elem.basicLeft = (counter % cols) * s;
+      elem.style.top = (Math.floor(counter / cols) * s) + 'px';
       counter++;
       document.querySelector("#movingPizzas1").appendChild(elem);
     }
