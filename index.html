@@ -1,82 +1,82 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content=" FILL ME IN ">
-    <meta name="author" content=" FILL ME IN ">
-    <title>Cameron Pittman: Portfolio</title>
-
-    <!-- Hmm, what is the impact of web fonts on speed? Measure it... -->
-    <!--<link href="//fonts.googleapis.com/css?family=Open+Sans:400,700" rel="stylesheet">-->
-
-    <!--<link href="css/style.css" rel="stylesheet">-->
-    <!-- set to media print, so this css does not block rendering -->
-    <link href="css/print_minified.css" rel="stylesheet" media="print">
-
-    <style>
-
-    html{font-size:100%;overflow-y:scroll;-webkit-tap-highlight-color:transparent;-ms-text-size-adjust:100%;-webkit-text-size-adjust:none}body{margin:0;font-size:14px;line-height:1.61;font-weight:400}body,button,input,select,textarea{font-family:'Open Sans',sans-serif;color:#333}a{color:#12C}a:visited{color:#61C}a:focus{outline:dotted thin}a:active,a:hover{color:#c00;outline:0}b,strong{font-weight:700}code,pre{font-family:monospace,monospace;font-size:1em}ol,ul{margin:1em 0;padding:0 0 0 20px}img{border:0;max-width:100%}body{background:#fff}.container,footer,header{max-width:45em;margin:0 auto}header{padding:0 .5em;color:#C90B0B}header img{border-radius:40px;float:left}header p{font-size:1.5em;font-weight:700;padding-left:4em}header p span{font-size:.8em;font-weight:400}.hero{padding:2em;background-color:#f8f8f8;font-size:1.2em;border-bottom:1px solid #ccc;border-top:1px solid #ccc}.content{padding:1em}.content li{list-style-type:none;font-size:1.1em}li img{float:left;padding-right:1em}li p{font-size:.9em;font-style:italic}footer{padding:0 .5em;border-top:1px solid #ccc}footer span{float:right;font-style:italic}@media only screen and (max-width:480px){body{font-size:12px}header p{padding-left:4.5em}}
-
-    </style>
-
-    <script async src="js/perfmatters_minified.js"></script>
-  </head>
-
-  <body>
-    <header>
-      <a href="/"><img src="https://lh3.googleusercontent.com/-rzS58e9WeZo/VNLY9Z6IL1I/AAAAAAAAANQ/Fp-N6Vb4d0I/s70-no/profilepic.jpg"></a>
-      <p>Cameron Pittman<br><span>Course Developer</span></p>
-    </header>
-
-    <div class="container">
-      <div class="hero">
-        <strong>I love web development!</strong> This is a template for a simple portfolio. I decided to use it to showcase a few Udacity courses I've taken and some teaching work, but you can use it to showcase any kind of project that you want the world to see :) <br> Contact me: me@email.com
-      </div>
-
-      <div class="content">
-        <ul>
-          <li>
-            <img src="https://lh4.ggpht.com/kJEnfqhPvtm4m3EneSZ4fWYGS8lW4YNhEjk6zPkyrQaBUHc-2Y_ElDic99NHI0h-UBLXVbRCjFybFvrWxdk=s100">
-            <a href="project-2048.html">Build Your Own 2048!</a>
-            <p>I made my own version of 2048. How cool is that!?</p>
-          </li>
-
-          <li>
-            <img src="https://lh6.ggpht.com/f_0W8h__3G99CWTjnMjD8BUKm7yp2-wJyApLtTwFoFtlal2ULf_JgHIsOQq2NiYfKOdMlXlMHDKNo5XVZLs=s100">
-            <a href="project-webperf.html">Website Performance Optimization</a>
-            <p>Hey... this class looks familiar.</p>
-          </li>
-
-          <li>
-            <img src="https://lh5.ggpht.com/IKdCmTWn8a2nMhlwMYzryvzRN5CUZAOBr4tDrEAbszV7TIFe9pRAInA4kkYcgTXwrifJsBEsq1agTueuu-g=s100">
-            <a href="project-mobile.html">Mobile Web Development</a>
-            <p>Making mobile apps isn't so hard after all.</p>
-          </li>
-
-          <li>
-            <img style="width: 100px;" src="https://lh4.googleusercontent.com/-HNpizFsryXI/VNa2v4vYPuI/AAAAAAAAAPk/bvDRCYkp4i4/w115-h75-no/pizzeria_small.jpg">
-            <a href="views/pizza.html">Cam's Pizzeria</a>
-            <p>Who wants a performant pizza?</p>
-          </li>
-        </ul>
-    </div>
-
-    <footer>
-      <p>&copy; Web Performance 2014 <span id="crp-stats"></span></p>
-    </footer>
-
-    <!-- can this be moved to the bottom so it does not block parsing? (moved to bottom) -->
-    <script>
-      (function(w,g){w['GoogleAnalyticsObject']=g;
-      w[g]=w[g]||function(){(w[g].q=w[g].q||[]).push(arguments)};w[g].l=1*new Date();})(window,'ga');
-
-      // TODO: replace with your Google Analytics profile ID.
-      ga('create', 'UA-XXXX-Y');
-      ga('send', 'pageview');
-    </script>
-    <!-- set scrypt as async since it is non-critical -->
-    <script async src="http://www.google-analytics.com/analytics.js"></script>
-
-  </body>
-</html>
+<head>
+    <meta charset="UTF-8"> 
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+  	<title>Find Music Events Around You, by genre!</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+	<script src="js/knockout.js"></script>
+	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDCXZtFSTS35oIM_e8iL7uIOMm2G_23Rng"></script>
+	<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css" rel="stylesheet">
+	<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+	<div class="container">
+			<div data-bind="if: !performerInfo(), css: {'map-list': !performerInfo()}">
+				<div class="row">
+					<div class="location-input" data-bind="ifnot: performerInfo()">
+						<input class="form-group" type="text" data-bind="value: cityVal">
+						<span data-bind="if: events().length > 0">
+							<button class="btn btn-warning btn-sm" data-bind="click: cleanSearch">Change Neighborhood</button>
+						</span>
+						<button class="btn btn-warning btn-sm" data-bind="click: runSearch, text: searchButtonText"></button>
+					</div>
+					<div data-bind="css: {'col-md-7': resultsInfo}" id="map-canvas"></div>
+					<div class="col-md-5" "results" data-bind="if: resultsInfo">
+						<input class="form-group" id="venue" type="text" placeholder="Venue Name" data-bind="value: venueVal">
+						<button class="btn btn-warning btn-sm" data-bind="click: filterVenues">Set Filter</button>
+						<button class="btn btn-warning btn-sm" data-bind="click: removeFilter">Remove Filter</button>
+						<div id="results-list" data-bind="foreach: events">
+							<div>
+								<span class="venue-name" data-bind="text: eventVenue.name, click: $root.displayVenue"></span>
+								<div data-bind="foreach: eventPerformers">
+									<div class="artist_name" data-bind="text: performerName, click: $root.displayEvent, css: { 'highlight-event': eventIndex === $root.currentEventIndex(), 'highlight-performer': performerID === $root.currentPerformerID() }">
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div data-bind="visible: performerInfo" class="performer-info">
+				<div class="col-md-12">
+					<button class="btn btn-warning back-btn" data-bind="click: closePerformerInfo"> Back To Map </button>
+				</div>
+				<div class="col-md-12">
+					<div data-bind="visible: currentEventName"><h2 class="info-heading">Event</h2><p class="info-subheading" data-bind="text: currentEventName"></p></div>
+					<div data-bind="visible: currentVenueName"><h2 class="info-heading">Venue</h2><p class="info-subheading" data-bind="text: currentVenueName"></p></div>
+					<div data-bind="visible: currentVenueAddress"><h2 class="info-heading">Address</h2><p class="info-subheading" data-bind="text: currentVenueAddress"></p></div>
+					<div data-bind="visible: currentEventDate"><h2 class="info-heading">Date - Time</h2><p class="info-subheading" data-bind="text: currentEventDate"></p></div>
+					<div data-bind="visible: currentPerformerName"><h2 class="info-heading">Peformer</h2><p class="info-subheading" data-bind="text: currentPerformerName"></p></div>
+					<div data-bind="visible: currentPerformerGenres().length > 0"><h2 class="info-heading">Performer Genres</h2>
+						<div data-bind="foreach: currentPerformerGenres">
+							<p class="info-subheading" data-bind="text: name"></p>
+						</div>
+					</div>
+					<div data-bind="visible: currentPerformerURLs"><h2 class="info-heading">Links</h2>
+						<div data-bind="foreach: currentPerformerURLs">
+							<p class="info-subheading" data-bind="if: $data.lastfm_url"><a data-bind="attr: { href: lastfm_url, target:'_blank'}">Last FM</a></p>
+							<p class="info-subheading" data-bind="if: $data.mb_url"><a data-bind="attr: { href: mb_url, target:'_blank'}">MusicBrainz</a></p>
+							<p class="info-subheading" data-bind="if: $data.myspace_url"><a data-bind="attr: { href: myspace_url, target:'_blank'}">Myspace</a></p>
+							<p class="info-subheading" data-bind="if: $data.twitter_url"><a data-bind="attr: { href: twitter_url, target:'_blank'}">Twitter</a></p>
+							<p class="info-subheading" data-bind="if: $data.wikipedia_url"><a data-bind="attr: { href: wikipedia_url, target:'_blank'}">Wikipedia</a></p>
+						</div>
+					</div>
+					<div class="info-heading" data-bind="visible: currentPerformerVideos().length >0"><h2 class="info-heading">Videos</h2></div>
+					<div class="videos-list" data-bind="foreach: currentPerformerVideos">
+						<span data-bind="if: $data.image_url">
+							<a data-bind="attr: {href: url, target:'_blank'}"><img class="videos" data-bind="attr: {src: image_url}"></a>
+						</span>
+						<span data-bind="ifnot: $data.image_url">
+							<a data-bind="attr: {href: url, target:'_blank'}"><img class="videos" data-bind="attr: {src: 'images/default.jpg'}"></a>
+						</span>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<script src="js/koScript.js"></script>
+</body>
+</html> 
