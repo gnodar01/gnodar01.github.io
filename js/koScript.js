@@ -10,6 +10,7 @@ function MyViewModel() {
 	self.markers = ko.observableArray();
 
 	self.resultsInfo = ko.observable(false);
+	self.resultsList = ko.observable(false);
 	self.performerInfo = ko.observable(false);
 	self.currentEventName = ko.observable();
 	self.currentEventDate = ko.observable();
@@ -44,6 +45,15 @@ function MyViewModel() {
 		setAllMap(null);
 		self.currentEventIndex(null);
 		codeAddress(newCity);
+	}
+
+	self.displayResults = function() {
+		if (self.resultsList()) {
+			self.resultsList(false);
+		}
+		else {
+			self.resultsList(true);
+		}	
 	}
 
 	self.displayEvent = function() {
@@ -103,12 +113,19 @@ function MyViewModel() {
 
 	self.filterVenues = function() {
 		// In case there is another filter, it should be removed before re-filtering.
-		self.removeFilter();
-		// Close current info window.
-		currentInfoWindow.close();
+		self.clearFilter();
+		// Close current info window, if there is one set.
+		if (currentInfoWindow) {
+			currentInfoWindow.close();
+		}
 
-		// Get the value inputted in the filter search, and set to all lower cas letters.
-		var venueFilter = self.venueVal().toLowerCase();
+		// Get the value inputted in the filter search, and set to all lower case letters.
+		if (self.venueVal()) {
+			var venueFilter = self.venueVal().toLowerCase();
+		}
+		else {
+			return null;
+		}
 
 		var events = allEvents, markers = allMarkers;
 
@@ -134,7 +151,14 @@ function MyViewModel() {
 		setAllMap(map);
 	}
 
+	// Removes any value set in view.
 	self.removeFilter = function() {
+		self.venueVal(null);
+		self.clearFilter();
+	}
+
+	// Clears out any remnants from the filter.
+	self.clearFilter = function() {
 		self.events(allEvents);
 		self.markers(allMarkers);
 		// Remove all markers before re-populating to avoid doubling up on markers.
